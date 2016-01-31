@@ -1,2 +1,6 @@
-# Schedulling-
-SPT, WSPT,Flow Shop, Job Shop, Open Shop (heuristics or exacts methods)
+# Schedulling (heuristics or exacts methods)
+* SPT 
+* WSPT
+* Flow Shop 
+* Job Shop
+* Open Shop 
