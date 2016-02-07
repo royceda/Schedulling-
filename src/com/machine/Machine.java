@@ -15,34 +15,34 @@ import com.job.*;
  */
 public class Machine extends Scheduller {
 	
-	private HashMap<Integer, Job> jobs;
-	private List<Job> sched;
+	private HashMap<Integer, Job> sched;
+	private List<Job> jobs;
 	private int standard; // 0 = Cmax or F, 1 = Lmax, 2 = T; 3 = Nt
 	
 	public Machine(){
 		standard = 0;
-		jobs = new HashMap<Integer, Job>();
-		sched = new ArrayList<Job>();
+		sched    = new HashMap<Integer, Job>();
+		jobs     = new ArrayList<Job>();
 	}
 	
 	public Machine(int std){
 		standard = std;
-		jobs = new HashMap<Integer, Job>();
-		sched = new ArrayList<Job>();
+		sched    = new HashMap<Integer, Job>();
+		jobs     = new ArrayList<Job>();
 	}
 	
 	public void fille(){
 		int key = 0;
-		for(Iterator<Job> ite = sched.iterator(); ite.hasNext();){
+		for(Iterator<Job> ite = jobs.iterator(); ite.hasNext();){
 			Job current = ite.next();
-			jobs.put(key, current);
+			sched.put(key, current);
 			key++;
 		}	
 	}
 	
 	public void spt(){
 		
-		Collections.sort(sched, new Comparator<Job>(){
+		Collections.sort(jobs, new Comparator<Job>(){
 			@Override
 			public int compare(Job j1, Job j2){
 				return 0;
@@ -53,7 +53,7 @@ public class Machine extends Scheduller {
 	
 	
 	public void edd(){
-		Collections.sort(sched, new Comparator<Job>(){
+		Collections.sort(jobs, new Comparator<Job>(){
 			@Override
 			public int compare(Job j1, Job j2){			
 				return  j1.getD().compareTo(j2.getD());
@@ -63,14 +63,14 @@ public class Machine extends Scheduller {
 	}
 
 	public void HodgsonAndMoore(){
-		List<Job> lh = new ArrayList<Job>();
+		List<Job> lh  = new ArrayList<Job>();
 		List<Job> tmp = new ArrayList<Job>();
 		
 		edd();
 		sched.clear();
 		
 		int sum = 0;
-		for(Iterator<Job> ite = sched.iterator(); ite.hasNext();){
+		for(Iterator<Job> ite = jobs.iterator(); ite.hasNext();){
 			Job current = ite.next();
 			tmp.add(current);
 			sum += current.getP();
@@ -88,8 +88,8 @@ public class Machine extends Scheduller {
 			}
 		}	
 		
-		sched.addAll(tmp);
-		sched.addAll(lh);
+		jobs.addAll(tmp);
+		jobs.addAll(lh);
 		fille();
 	}
 	
