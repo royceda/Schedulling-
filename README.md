@@ -1,6 +1,6 @@
 # Schedulling (heuristics or exacts methods)
-* SPT 
-* WSPT
+* One Machine 
+* Two or more machines
 * Flow Shop 
 * Job Shop
 * Open Shop 
