@@ -35,13 +35,8 @@ public class Machine extends Scheduller {
 		sched    = new ArrayList<Job>();
 		jobs     = listJob;
 	}
+
 	
-	public void fille(){
-		for(Iterator<Job> ite = jobs.iterator(); ite.hasNext();){
-			Job current = ite.next();
-			sched.add(current);
-		}	
-	}
 	
 	/**
 	 * Scheduling with SPT order (shortest processing time)
@@ -51,10 +46,11 @@ public class Machine extends Scheduller {
 		Collections.sort(sched, new Comparator<Job>(){
 			@Override
 			public int compare(Job j1, Job j2){
-				return 0;
+				return j1.getP().compareTo(j2.getP());
 			}
 		});		
 	}
+	
 	
 	/**
 	 * Schedulling wth edd order (earlier due date)
@@ -69,6 +65,8 @@ public class Machine extends Scheduller {
 		});	
 	}
 
+	
+	
 	/**
 	 * Hogdson Moore algorithm
 	 */
@@ -76,16 +74,12 @@ public class Machine extends Scheduller {
 		List<Job> lh  = new ArrayList<Job>();
 		List<Job> tmp = new ArrayList<Job>();
 		
-		edd();
-		//tmp.addAll(sched);
-		//sched.clear();
-		
+		edd();	
 		int sum = 0;
 		for(Iterator<Job> ite = sched.iterator(); ite.hasNext();){
 			Job current = ite.next();
 			tmp.add(current);
 			sum += current.getP();
-			
 			
 			for(Job job: tmp){			
 				if(job.getD() < sum){
@@ -99,8 +93,7 @@ public class Machine extends Scheduller {
 		}	
 		sched.clear();
 		sched.addAll(tmp);
-		sched.addAll(lh);
-		
+		sched.addAll(lh);	
 	}
 	
 	private Job longestJob(List<Job> l){
@@ -113,6 +106,7 @@ public class Machine extends Scheduller {
 		}
 		return higher;
 	}
+	
 	
 	@Override
 	public void schedule() {

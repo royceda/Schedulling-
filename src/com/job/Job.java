@@ -14,7 +14,7 @@ public class Job{
 	
 	public Job(){}
 	
-	public Job(int name, int w, int p, int r, int d){
+	public Job(int name, int p, int w, int r, int d){
 		this.setName(name);
 		this.setW(w);
 		this.setP(p);
