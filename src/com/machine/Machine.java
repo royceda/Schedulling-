@@ -16,14 +16,12 @@ import com.job.*;
  */
 public class Machine extends Scheduller {
 	
-	private ArrayList<Job> sched;
-	private List<Job> jobs;
 	private int standard; // 0 = Cmax or F, 1 = Lmax, 2 = T; 3 = Nt
 	
 	public Machine(){
+		super();
 		standard = 0;
-		sched    = new ArrayList<Job>();
-		jobs     = new ArrayList<Job>();
+
 	}
 	
 	/**
@@ -31,9 +29,8 @@ public class Machine extends Scheduller {
 	 * @param std
 	 */
 	public Machine(int std, List<Job> listJob){
+		super(listJob);
 		standard = std;
-		sched    = new ArrayList<Job>();
-		jobs     = listJob;
 	}
 
 	

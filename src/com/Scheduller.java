@@ -7,8 +7,20 @@ import java.util.List;
 import com.job.Job;
 
 public abstract class Scheduller {
-	private HashMap<Integer, Job> jobs;
-	private ArrayList<List> sched; //one or many machines
+	protected List<Job> jobs;
+	protected List<Job> sched; //one or many machines
+	
+	public Scheduller(){
+		sched    = new ArrayList<Job>();
+		jobs     = new ArrayList<Job>();
+	}
+	
+	
+	public Scheduller(List<Job> jobList){
+		sched    = new ArrayList<Job>();
+		jobs     = jobList;
+	}
+	
 	
 	public abstract void schedule();
 	
