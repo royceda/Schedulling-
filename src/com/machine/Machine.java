@@ -52,6 +52,28 @@ public class Machine extends Scheduller {
 	}
 	
 	
+	
+	/**
+	 * Scheduling with WSPT order (shortest processing time)
+	 */
+	private void wspt(){	
+		sched.addAll(jobs);
+		Collections.sort(sched, new Comparator<Job>(){
+			@Override
+			public int compare(Job j1, Job j2){
+				double r1 = 1.0*j1.getP()/j1.getW();
+				double r2 = 1.0*j2.getP()/j2.getW();
+				if(r1 < r2){
+					return -1;
+				}else if(r1 > r2){
+					return 1;
+				}else
+					return 0;			
+			}
+		});		
+	}
+	
+	
 	/**
 	 * Schedulling wth edd order (earlier due date)
 	 */
@@ -111,14 +133,17 @@ public class Machine extends Scheduller {
 	@Override
 	public void schedule() {
 		switch (standard){
-			case 1:
+			case 0:
 				spt();
 				break;
-			case 2:
+			case 1:
 				edd();
 				break;
-			case 3:
+			case 2:
 				HodgsonAndMoore();
+				break;
+			case 3:
+				wspt();
 				break;
 			default:
 				//Branch and bound

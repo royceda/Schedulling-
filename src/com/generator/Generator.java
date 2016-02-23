@@ -22,7 +22,7 @@ public class Generator {
 		int n = 10;
 		Random r = new Random();
 		for(int i =0; i< n; i++){
-			Job tmp = new Job(i, r.nextInt(10), r.nextInt(10),r.nextInt(10), r.nextInt(10));
+			Job tmp = new Job(i, r.nextInt(10)+1, r.nextInt(10)+1 ,r.nextInt(10), r.nextInt(10));
 			jobs.add(tmp);
 		}	
 		return jobs;
