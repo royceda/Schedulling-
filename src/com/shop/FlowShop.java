@@ -12,10 +12,21 @@ public class FlowShop extends Scheduller{
 	 * 2 machines, there is an exact method
 	 * more than 2, heuristic
 	 */
-	HashMap<Integer, Machine> sched; 
-	void johnson(){
-		
-	}
+	
+	
+	private int n;
+	private HashMap<Integer, Machine> sched; 
+	
+	
+	public void johnson(){}
+	
+	public void dominated(){}
+	
+	public void cds(){}
+	
+	public void danenbring(){}
+	
+	public void branchAndBound(){}
 	
 	@Override
 	public void schedule() {
