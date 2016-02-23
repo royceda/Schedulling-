@@ -1,11 +1,28 @@
 package com.job;
 
+import java.util.List;
+
 public class Job{
-	private Integer name;
-	private Integer w; //weight
-	private Integer p; //processing time
-	private Integer r; //release date
-	private Integer d; //due date or deadline
+	private int name;
+	private int w; //weight
+	private int p; //processing time
+	private int r; //release date
+	private int d; //due date or deadline
+	
+	private List<Integer> previous;
+	
+	
+	public Job(){}
+	
+	public Job(int name, int w, int p, int r, int d){
+		this.setName(name);
+		this.setW(w);
+		this.setP(p);
+		this.setR(r);
+		this.setD(d);		
+	}
+	
+	
 	
 	public Integer getName() {
 		return name;
