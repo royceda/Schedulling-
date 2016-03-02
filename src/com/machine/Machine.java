@@ -115,6 +115,7 @@ public class Machine extends Scheduller {
 		sched.addAll(lh);	
 	}
 	
+	
 	private Job longestJob(List<Job> l){
 		Job higher = new Job();
 		for(Iterator<Job> ite = l.iterator(); ite.hasNext();){

@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.List;
 
+import org.jfree.ui.RefineryUtilities;
+
+import com.gantt.Output;
 import com.generator.Generator;
 import com.job.Job;
 import com.machine.Machine;
@@ -37,6 +40,15 @@ public class main {
 		
 		
 		System.out.println("OK!!!");
+	
+	
+	
+	 System.out.println("ok");
+     
+     final Output demo = new Output("Gantt");
+     demo.pack();
+     RefineryUtilities.centerFrameOnScreen(demo);
+     demo.setVisible(true);
+	
 	}
-
 }
