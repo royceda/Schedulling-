@@ -1,5 +1,7 @@
 package com.gantt;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Calendar;
@@ -36,47 +38,49 @@ public class Output extends ApplicationFrame{
 	
 	 public IntervalCategoryDataset createDataset() throws IOException {
 
-		 final Data data = new Data("sol.txt");
+		 //final Data data = new Data("input.in");
 		 final TaskSeriesCollection collection = new TaskSeriesCollection();
 		 
 		 
-		/* for(Iterator<Ressource> ite1 = data.getRessources().iterator(); ite1.hasNext();){    
-			 Ressource res            = ite1.next();           
-			 int             br              = res.getB();
-			 String        namer        = res.getName();
-			 String        description =  namer + " B= "+String.valueOf(br);
+		
+		 BufferedReader br = new BufferedReader(new FileReader("input1.in"));
+	        
+	        String delims = " ";
+	        String parse = br.readLine();
+	        
+	        
+	        //first line
+	        String[] tmp = parse.split(delims);
+	        int n =Integer.parseInt( tmp[0]);
+	        int m = Integer.parseInt(tmp[1]);
+	        
+	        //machine loop
+	        for(int i = 0; i<m; i++){
+	        	parse = br.readLine();
+	        	tmp = parse.split(delims);
+	            int k =Integer.parseInt( tmp[0]);
+	        	        	
+	        	
+	            String description = "machine "+i;
+	            final TaskSeries s1 = new TaskSeries(description);
 	            
-			 final TaskSeries s1 = new TaskSeries(description);
 	            
-	           /* for(Iterator<Job> ite = data.getJobs().iterator() ; ite.hasNext();){
-	            	Job job = ite.next();
-	            	
-	            	String namej =  job.getName(); 
-	                int p = job.getP();
-	                int start = job.getS();
-	                int end = start+p;
-	                            
-	                int index = Integer.parseInt(res.getName());
-	                //int bj = job.getB().get(index); //list ou tableau
-	                
-	                //String descriptionj = namej+", b="+String.valueOf(bj);
-	                String descriptionj = namej;
-	                
-	                s1.add(new Task(descriptionj,
-	                        new SimpleTimePeriod(start, end)));
-	            }
-	            collection.add(s1);
-	        }       */
-		 
-		 String description = "machine 1";
-		 final TaskSeries s1 = new TaskSeries(description);
-		 String descriptionj = "job";
-		 int start = 1;
-		 int end = 6;
-		 s1.add(new Task(descriptionj, new SimpleTimePeriod(start, end)));
-		 s1.add(new Task("aaa", new SimpleTimePeriod(5, 8)));
-		 s1.add(new Task("bbb", new SimpleTimePeriod(3, 7)));
-		 collection.add(s1);
+	            //job loop
+	        	for(int j=0; j<k; j++){
+	        		parse = br.readLine();
+	        		tmp = parse.split(delims);
+	        		
+	        		String name = tmp[0];
+	        		int start = Integer.parseInt(tmp[1]);
+	        		int end = Integer.parseInt(tmp[2]);
+	        		
+	        		
+	        		String descriptionj = "job "+j;
+	        		s1.add(new Task(descriptionj, new SimpleTimePeriod(start, end)));
+	        		     		
+	        	}  
+	        	collection.add(s1);
+	        }
 		 
 		 return collection;
 	    }
@@ -86,7 +90,7 @@ public class Output extends ApplicationFrame{
 	 
 	   private JFreeChart createChart(final IntervalCategoryDataset dataset) {
 	        final JFreeChart chart = ChartFactory.createGanttChart(
-	            "RCPSP",  // chart title
+	            "Gantt",  // chart title
 	            "Task",              // domain axis label
 	            "Date",              // range axis label
 	            dataset,             // data
