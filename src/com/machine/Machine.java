@@ -43,7 +43,7 @@ public class Machine extends Scheduller {
 		Collections.sort(sched, new Comparator<Job>(){
 			@Override
 			public int compare(Job j1, Job j2){
-				return j1.getP().compareTo(j2.getP());
+				return j1.getP(0).compareTo(j2.getP(0));
 			}
 		});
 	}
@@ -58,8 +58,8 @@ public class Machine extends Scheduller {
 		Collections.sort(sched, new Comparator<Job>(){
 			@Override
 			public int compare(Job j1, Job j2){
-				double r1 = 1.0*j1.getP()/j1.getW();
-				double r2 = 1.0*j2.getP()/j2.getW();
+				double r1 = 1.0*j1.getP(0)/j1.getW();
+				double r2 = 1.0*j2.getP(0)/j2.getW();
 				if(r1 < r2){
 					return -1;
 				}else if(r1 > r2){
@@ -98,14 +98,14 @@ public class Machine extends Scheduller {
 		for(Iterator<Job> ite = sched.iterator(); ite.hasNext();){
 			Job current = ite.next();
 			tmp.add(current);
-			sum += current.getP();
+			sum += current.getP(0);
 
 			for(Job job: tmp){
 				if(job.getD() < sum){
 					Job high = longestJob(tmp);
 					lh.add(high);
 					tmp.remove(high);
-					sum -= high.getP();
+					sum -= high.getP(0);
 					break;
 				}
 			}
@@ -117,19 +117,22 @@ public class Machine extends Scheduller {
 
 
 	private Job longestJob(List<Job> l){
-		Job higher = new Job();
+		Job higher = l.iterator().next();
+		
+		
 		for(Iterator<Job> ite = l.iterator(); ite.hasNext();){
 			Job current = ite.next();
-			if(higher.getP() < current.getP()){
+			if(higher.getP(0) < current.getP(0)){
 				higher = current;
 			}
 		}
 		return higher;
 	}
 
-/**
-* Branch and bound implementation with cplex.jar
-*/
+	
+	/**
+	 * Branch and bound implementation with cplex.jar
+	 */
 	private void BranchAndBound(){
 
 	}

@@ -22,7 +22,8 @@ public class Generator {
 		int n = 10;
 		Random r = new Random();
 		for(int i =0; i< n; i++){
-			Job tmp = new Job(i, r.nextInt(10)+1, r.nextInt(10)+1 ,r.nextInt(10), r.nextInt(10));
+			int p[] = {r.nextInt(10)+1};
+			Job tmp = new Job(i, p, r.nextInt(10)+1 ,r.nextInt(10), r.nextInt(10));
 			jobs.add(tmp);
 		}	
 		return jobs;
@@ -48,7 +49,7 @@ public class Generator {
 		bw.newLine();
 		for(Iterator<Job> ite = jobs.iterator(); ite.hasNext();){
 			Job tmp = ite.next();
-			str = tmp.getName()+" "+tmp.getP()+" "+tmp.getW()+" "+tmp.getR()+ " "+tmp.getD();
+			str = tmp.getName()+" "+tmp.getP(0)+" "+tmp.getW()+" "+tmp.getR()+ " "+tmp.getD();
 			bw.write(str);
 			bw.newLine();
 		}

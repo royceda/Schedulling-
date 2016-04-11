@@ -5,16 +5,18 @@ import java.util.List;
 public class Job{
 	private int name;
 	private int w; //weight
-	private int p; //processing time
+	private int p[]; //processing time
 	private int r; //release date
 	private int d; //due date or deadline
+	
+	public int p1[];//many machines
 	
 	private List<Integer> previous;
 	
 	
 	public Job(){}
 	
-	public Job(int name, int p, int w, int r, int d){
+	public Job(int name, int p[], int w, int r, int d){
 		this.setName(name);
 		this.setW(w);
 		this.setP(p);
@@ -38,11 +40,14 @@ public class Job{
 		this.w = w;
 	}
 	
-	public Integer getP() {
-		return p;
+	public Integer getP(int index) {
+		return p[index];
 	}
-	public void setP(int p) {
-		this.p = p;
+	
+	public void setP(int p[]) {
+		this.p = new int[p.length];
+		for(int i=0; i<p.length; i++)
+		this.p[i] = p[i];
 	}
 	
 	public Integer getR() {
