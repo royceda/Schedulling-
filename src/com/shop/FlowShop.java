@@ -61,6 +61,7 @@ public class FlowShop extends Scheduller{
 			}
 		});
 		
+		
 		//Schedule
 		for(Job tmp : U){
 			sched.add(tmp);
